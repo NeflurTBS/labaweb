@@ -32,9 +32,7 @@
 | Request |
 | Response |
 | Errors | • ERR_EMAIL_ALREADY_REGISTR - почта уже зарегистрированна в приложении
-• ERR_VALIDATION_FAILED_PASS - пароль содержит неподдерживаемые символы
-• ERR_LENGTH_PASS - неверная длинна пароля |
-
+• ERR_EMAIL_WRONG - несуществующая почта
 
 
 | Создание задачи |  |
