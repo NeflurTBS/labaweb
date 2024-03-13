@@ -27,7 +27,7 @@
 
 | Подверждение регистрации через почту |  |
 | --- | --- |
-| Endpoint | POST /api/todo/registr |
+| Endpoint | POST /api/todo/confirmEmailCode |
 | Description | Метод для подтвержения регистрации |
 | Request |
 | Response |
@@ -45,7 +45,7 @@
 
 | Создание задачи |  |
 | --- | --- |
-| Endpoint | POST /api/todo/creattask |
+| Endpoint | POST /api/todo/creatTask |
 | Description | Метод для создания задач |
 | Request |
 | Response |
@@ -53,7 +53,7 @@
 
 | Редактирование задачи |  |
 | --- | --- |
-| Endpoint | POST /api/todo/edittask |
+| Endpoint | POST /api/todo/editTask |
 | Description | Метод для редактирования задач |
 | Request |
 | Response |
@@ -61,7 +61,7 @@
 
 | Удаление задачи |  |
 | --- | --- |
-| Endpoint | POST /api/todo/deletetask |
+| Endpoint | POST /api/todo/deleteTask |
 | Description | Метод для удаления задач |
 | Request |
 | Response |
@@ -69,11 +69,27 @@
 
 | Создание папок для задач |  |
 | --- | --- |
-| Endpoint | POST /api/todo/creatdir |
+| Endpoint | POST /api/todo/creatDir |
 | Description | Метод для создания папок |
 | Request |
 | Response |
 | Errors | • ERR_EMPTY - пустое поле
+
+| Сортировка |  |
+| --- | --- |
+| Endpoint | POST /api/todo/sorting |
+| Description | Метод для сортировки |
+| Request |
+| Response |
+
+| Поиск папок и задач |  |
+| --- | --- |
+| Endpoint | POST /api/todo/search |
+| Description | Метод для поиска папок и задач |
+| Request |
+| Response |
+| Errors | • ERR_EMPTY_NAME - нет введенных символов
+
 
 
 > **Не стоит путать клиентов - с пользователями**.
