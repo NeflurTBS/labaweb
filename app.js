@@ -27,12 +27,6 @@ app.get('/getTasks', (req, res) => {
   console.log('req.body: ', req.body);
   const taskName = req.body.name;
 
-  // Проверка наличия имени задачи в теле запроса
-  if (!taskName) {
-    res.status(400).send('Не указано имя задачи');
-    return;
-  }
-
   // Пример запроса к базе данных
   dbConnection.query('SELECT * FROM tasks', (err, results) => {
     if (err) {
@@ -49,23 +43,26 @@ app.get('/getIDtask', (req, res) => {
 
   // Получение имени задачи из тела запроса
   console.log('req.body: ', req.body);
-  const taskName = req.body.name;
+  const taskID = req.body.id;
 
   // Проверка наличия имени задачи в теле запроса
-  if (!taskName) {
+  if (!taskID) {
     res.status(400).send('Не указано имя задачи');
     return;
   }
 
   // Пример запроса к базе данных
-  const idTask = req.body.id;
-  dbConnection.query(`SELECT * FROM tasks WHERE id=('${idTask}')`, (err, results) => {
+  
+  dbConnection.query(`SELECT * FROM tasks WHERE id=('${taskID}')`, (err, results) => {
     if (err) {
       console.error('Ошибка выполнения запроса: ' + err.stack);
       res.status(500).send('Ошибка сервера');
       return;
     }
     console.log('Результаты запроса:', results);
+    if(results.length==0){
+      res.status(400).send('нет такого id')
+    }
     res.json(results);
   });
 });
@@ -74,17 +71,16 @@ app.delete('/DeleteTask', (req, res) => {
 
   // Получение имени задачи из тела запроса
   console.log('req.body: ', req.body);
-  const taskName = req.body.name;
+  const taskID = req.body.id;
 
   // Проверка наличия имени задачи в теле запроса
-  if (!taskName) {
+  if (!taskID) {
     res.status(400).send('Не указано имя задачи');
     return;
   }
 
   // Пример запроса к базе данных
-  const idTask = req.body.id;
-  dbConnection.query(`DELETE FROM tasks WHERE id=('${idTask}')`, (err, results) => {
+  dbConnection.query(`DELETE FROM tasks WHERE id=('${taskID}')`, (err, results) => {
     if (err) {
       console.error('Ошибка выполнения запроса: ' + err.stack);
       res.status(500).send('Ошибка сервера');
@@ -100,6 +96,7 @@ app.put('/UpdateTask', (req, res) => {
   // Получение имени задачи из тела запроса
   console.log('req.body: ', req.body);
   const taskName = req.body.name;
+  const idTask = req.body.id;
 
   // Проверка наличия имени задачи в теле запроса
   if (!taskName) {
@@ -107,8 +104,13 @@ app.put('/UpdateTask', (req, res) => {
     return;
   }
 
+  if (!idTask) {
+    res.status(400).send('Не указан id задачи');
+    return;
+  }
+
   // Пример запроса к базе данных
-  const idTask = req.body.id;
+  
   
   dbConnection.query(`UPDATE tasks SET name=('${taskName}') WHERE id=('${idTask}')`, (err, results) => {
     if (err) {
