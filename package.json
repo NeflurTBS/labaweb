@@ -1,15 +1,20 @@
 {
-  "name": "labaweb.json",
+  "name": "labaweb",
   "version": "1.0.0",
   "description": "hello guys",
   "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "hello": "node test.js"
+    "start": "node app.js"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "express": "^4.19.2",
+    "mysql": "^2.18.1"
   }
 }
