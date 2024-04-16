@@ -1,4 +1,11 @@
 // файл ./frontend/script.js
+var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', function () {
+  myInput.focus()
+})
+
 
 // Функция для загрузки задач с сервера
 function loadTasks() {
