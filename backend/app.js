@@ -4,6 +4,7 @@ const mysql = require('mysql');
 const config = require('./config');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const app = express();
 const port = config.port;
 
@@ -28,13 +29,12 @@ dbConnection.connect((err) => {
 // Регистрация пользователя
 app.post('/register', async (req, res) => {
   try {
-    const username = req.body.username;
-    const password = req.body.password;
+    const { username, password } = req.body;
     // Хеширование пароля
     const hashedPassword = await bcrypt.hash(password, 10);
     // Сохранение пользователя в базе данных
     dbConnection.query(
-      `INSERT INTO users (username, password) VALUES ('${username}', '${hashedPassword}')`,
+      `INSERT INTO users (name, pass) VALUES ('${username}', '${hashedPassword}')`,
       (err, result) => {
         if (err) {
           console.error('Ошибка выполнения запроса: ' + err.stack);
@@ -57,7 +57,7 @@ app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     // Поиск пользователя в базе данных
     dbConnection.query(
-      `SELECT * FROM users WHERE username = '${username}'`,
+      `SELECT * FROM users WHERE name = '${username}'`,
       async (err, results) => {
         if (err) {
           console.error('Ошибка выполнения запроса: ' + err.stack);
@@ -68,15 +68,18 @@ app.post('/login', async (req, res) => {
           res.status(401).send('Неверные учетные данные');
           return;
         }
+        
         const user = results[0];
+        console.log(results);
+        console.log(password,user.pass);
         // Проверка пароля
-        const passwordMatch = await bcrypt.compare(password, user.password);
+        const passwordMatch = await bcrypt.compare(password, user.pass);
         if (!passwordMatch) {
           res.status(401).send('Неверные учетные данные');
           return;
         }
         // Генерация JWT токена
-        const token = jwt.sign({ username: user.username }, config.jwtSecret);
+        const token = jwt.sign({ name: user.name }, config.jwtSecret);
         res.status(200).json({ token });
       }
     );
@@ -93,7 +96,7 @@ app.get('/profile', (req, res) => {
   try {
     // Проверка токена
     const decoded = jwt.verify(token, config.jwtSecret);
-    res.status(200).json({ username: decoded.username });
+    res.status(200).json({ name: decoded.name });
   } catch (error) {
     console.error('Ошибка при проверке токена:', error);
     res.status(401).send('Неверный токен');
