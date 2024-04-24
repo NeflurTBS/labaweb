@@ -1,5 +1,5 @@
 // файл ./frontend/script.js
-var myModal = document.getElementById('myModal')
+
 
 document.addEventListener('DOMContentLoaded', () => {
   // Обработка формы входа
