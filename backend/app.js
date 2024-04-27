@@ -108,7 +108,6 @@ app.get('/getTasks', (req, res) => {
 
   // Получение имени задачи из тела запроса
   console.log('req.body: ', req.body);
-  const taskName = req.body.name;
 
   // Пример запроса к базе данных
   dbConnection.query('SELECT * FROM tasks', (err, results) => {

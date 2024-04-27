@@ -12,92 +12,176 @@
       crossorigin="anonymous"
     />
   </head>
-  
-  <body>
-    <div class="header">
-      <div class="body_header">
-        <span class="logo">To-Do List</span>
-        <nav >
-
-          <!-- Кнопка-триггер модального окна -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-          Registation
+  <header>
+    <div class="body_header">
+      <span class="logo">To-Do List</span>
+      <nav>
+        <!-- Кнопка-триггер модального окна -->
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+        >
+          Регистрация
         </button>
 
         <!-- Модальное окно -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div
+          class="modal fade"
+          id="staticBackdrop"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Registation</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                <h5 class="modal-title" id="staticBackdropLabel">
+                  Registation
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Закрыть"
+                ></button>
               </div>
               <div class="modal-body">
-                
                 <form id="registerForm">
-                  <input type="text" id="newUsername" placeholder="Новое имя пользователя" required>
-                  <input type="password" id="newPassword" placeholder="Новый пароль" required>
-                  <button type="submit" class="btn btn-primary">Зарегистрироваться</button>                  
+                  <input
+                    type="text"
+                    id="newUsername"
+                    placeholder="Новое имя пользователя"
+                    required
+                  />
+                  <input
+                    type="password"
+                    id="newPassword"
+                    placeholder="Новый пароль"
+                    required
+                  />
+                  <button type="submit" class="btn btn-primary">
+                    Зарегистрироваться
+                  </button>
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Закрыть
+                </button>
               </div>
             </div>
           </div>
         </div>
 
-        
-
-          <!-- Кнопка-триггер модального окна -->
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Autorization
-          </button>
+        <!-- Кнопка-триггер модального окна -->
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+        >
+          Авторизация
+        </button>
         <!-- Модальное окно -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div
+          class="modal fade"
+          id="staticBackdrop"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Autorization</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                <h5 class="modal-title" id="staticBackdropLabel">
+                  Autorization
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Закрыть"
+                ></button>
               </div>
               <div class="modal-body">
-                
                 <form id="loginForm">
-                  <input type="text" id="username" placeholder="Имя пользователя" required>
-                  <input type="password" id="password" placeholder="Пароль" required>
+                  <input
+                    type="text"
+                    id="username"
+                    placeholder="Имя пользователя"
+                    required
+                  />
+                  <input
+                    type="password"
+                    id="password"
+                    placeholder="Пароль"
+                    required
+                  />
                   <button type="submit" class="btn btn-primary">войти</button>
                 </form>
-
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Закрыть
+                </button>
               </div>
             </div>
           </div>
-        </div> 
-      
+        </div>
       </nav>
     </div>
-  </div>  
-
-    
+  </header>
+  <body>
     <div class="main">
-      <form id="taskForm">
-        <input type="text" id="taskInput" placeholder="Add a new task" />
-        <button type="submit">Add Task</button>
-      </form>
+      <div class="toolbar">
+        <form id="taskForm">
+          <input type="text" id="taskInput" placeholder="Добавьте новую задачу"
+          />
+          <button type="submit">Добавить</button>
+        </form>
+        <div id="showmehideme" style="display: none">
+        <input />
+        <button type="submitDelete">Удалить</button>
+      </div>
+        <button id="button" onclick="showhide(mydiv)">Удаление</button>
+      </div>
     </div>
     <div class="main">
-      <ul id="taskList">
-        <!-- Сюда будут добавляться задачи -->
-      </ul>
-    </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Номер задачи</th>
+            <th>Задача</th>
+            <th>ID задачи</th>
+          </tr>
+        </thead>
+        <tbody class="tableTask" id="taskList">
+          <tr>
+            <td>1123456</td>
+            <td>12</td>
+          </tr>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+          <!-- Сюда будут добавляться задачи -->
+        </tbody>
+      </table>
+    </div>
 
     <!-- Gem jQuery -->
-
+    <script src="/assets/js/jquery-3.5.1.min.js"></script>
     <script src="script.js"></script>
     <!-- Подключаем JavaScript файл -->
     <script

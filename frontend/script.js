@@ -1,6 +1,12 @@
 // файл ./frontend/script.js
 var myModal = document.getElementById('myModal')
 
+mydiv = document.getElementById("showmehideme");
+
+function showhide(d) {
+    d.style.display = (d.style.display !== "none") ? "none" : "block";
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // Обработка формы входа
   document.getElementById('loginForm').addEventListener('submit', async (event) => {
@@ -54,9 +60,9 @@ function loadTasks() {
       const taskList = document.getElementById('taskList');
       taskList.innerHTML = '';
       tasks.forEach(task => {
-        const li = document.createElement('li');
-        li.textContent = task.name;
-        taskList.appendChild(li);
+        var tr = document.createElement('tr');
+        tr.innerHTML = `<td>${task.name} </td> <td>${task.id}</td>`;
+        taskList.appendChild(tr);
       });
     })
     .catch(error => console.error('Error fetching tasks:', error));
