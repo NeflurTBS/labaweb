@@ -70,8 +70,6 @@ app.post('/login', async (req, res) => {
         }
         
         const user = results[0];
-        console.log(results);
-        console.log(password,user.pass);
         // Проверка пароля
         const passwordMatch = await bcrypt.compare(password, user.pass);
         if (!passwordMatch) {
@@ -79,7 +77,7 @@ app.post('/login', async (req, res) => {
           return;
         }
         // Генерация JWT токена
-        const token = jwt.sign({ name: user.name }, config.jwtSecret);
+        const token = jwt.sign({ name: user.name }, config.jwtSecret,{expiresIn: '1h'});
         res.status(200).json({ token });
       }
     );

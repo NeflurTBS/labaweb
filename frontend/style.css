@@ -17,29 +17,102 @@ header{
   justify-content: space-between;
 }
 .logo{
-  font-family: Comic Sans MS, Comic Sans, cursive;
-  color:#ffffff;
-  font-size:36px;
-  text-shadow: 2px 1px 1px #000000;
+  text-align: center;
+  color:#fff;
+  margin-top: -10px;
+  font-size: 50px;
+  font-weight: 100;
+  text-shadow: 2px 2px 2px #000;
+  font-family: Sans MS, Comic Sans, cursive
+}
+.button {
+  padding: 5px;
+  display:inline-block;
+  margin:0 0.4em 0;
+  color:#fff;
+  text-shadow: 1px 1px 1px #000;
+  background-color: #1B9E00;
+  border: 2px solid #126700;
+  border-radius: 8px; /* Радиус скругления */
+  transition: all 0.2s linear;
+}
+.button:hover {
+  background-color: #2D771E;
+  border: 2px solid #126700;
+}
+.button:active{
+  background-color: #71CF5D;
+  border: 2px solid #126700;
 }
 body {
   font-family: Arial, sans-serif;
+  background-color: #8cd1c8;
 }
 .main{
-  max-width: 1100px;
+  max-width: 1219px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 55px;
   padding-right: 55px;
 }
-#taskForm{
-  margin-top: 20px;
+
+#registerForm{
+  display:flex;
+  flex-direction: column;
 }
-#taskList {
+#newPassword{
   margin-top: 10px;
-  margin-bottom: 20px;
-  
+  margin-bottom: 10px;
 }
+#loginForm{
+  display:flex;
+  flex-direction: column;
+}
+#password{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.secondaryButton{
+    padding: 5px;
+    display:inline-block;
+    color:#fff;
+    text-shadow: 1px 1px 1px #000;
+    background-color: #3D6DBE;
+    border: 2px solid #042152;
+    border-radius: 8px; /* Радиус скругления */
+    transition: all 0.2s linear;
+}
+.secondaryButton:hover {
+  background-color: #0C367E;
+  border: 2px solid #042152;
+}
+.secondaryButton:active{
+    background-color: #6083BE;
+    border: 2px solid #042152;
+}
+
+.deleteButton{
+  padding: 5px;
+  display:inline-block;
+  color:#fff;
+  text-shadow: 1px 1px 1px #000;
+  background-color: #DE7D38;
+  border: 2px solid #7B3300;
+  border-radius: 8px; /* Радиус скругления */
+  transition: all 0.2s linear;
+}
+.deleteButton:hover{
+  background-color: #BE4F00;
+  border: 2px solid #7B3300;
+}
+.deleteButton:active{
+  background-color: #DE9764;
+  border: 2px solid #7B3300;
+}
+
+
+
 .tableTask{
   border-collapse: collapse;
   border-spacing:50px;
@@ -54,10 +127,18 @@ body {
   vertical-align: middle;
 
 }
-
+table{
+  margin-top: 20px;
+}
 td, th{
   padding-right: 40px;
 
   text-align: center;
 }
-#mydiv { background-color: #ddd; }
+.toolbar{
+  margin-top: 20px;
+}
+.CRUD{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

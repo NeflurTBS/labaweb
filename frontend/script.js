@@ -1,18 +1,35 @@
 // файл ./frontend/script.js
-var myModal = document.getElementById('myModal')
+var myModal = document.getElementById('myModal');
 
-mydiv = document.getElementById("showmehideme");
+const ShowDeleteTask = document.getElementById("taskFormDelete");
+const ShowAddTask = document.getElementById("taskFormAdd");
+const ShowUpdateTask = document.getElementById("taskFormUpdate");
 
 function showhide(d) {
-    d.style.display = (d.style.display !== "none") ? "none" : "block";
-}
+  d.style.display = (d.style.display !== "none") ? "none" : "block";
+  }
 
-document.addEventListener('DOMContentLoaded', () => {
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      // Пользователь аутентифицирован, делаем что-то...
+      // Например, получаем данные пользователя или показываем защищенные части приложения
+      // Вы можете отправить запрос на /profile маршрут для получения данных о пользователе
+      // Или просто показать определенные элементы интерфейса, доступные только аутентифицированным пользователям
+     console.log(token);
+    } else {
+      // Пользователь не аутентифицирован, показываем форму входа и/или регистрации
+      // Например:
+     
+    }
+  });
+  document.addEventListener('DOMContentLoaded', () => {
   // Обработка формы входа
   document.getElementById('loginForm').addEventListener('submit', async (event) => {
     event.preventDefault();
-    const username = document.getElementById('name').value;
-    const password = document.getElementById('pass').value;
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
     try {
       const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
@@ -84,13 +101,68 @@ function addTask(taskName) {
 }
 
 // Обработчик события отправки формы
-document.getElementById('taskForm').addEventListener('submit', function (event) {
+document.getElementById('taskFormAdd').addEventListener('submit', function (event) {
   event.preventDefault(); // Предотвращаем перезагрузку страницы
   const taskInput = document.getElementById('taskInput');
   const taskName = taskInput.value.trim();
   if (taskName !== '') {
     addTask(taskName); // Вызываем функцию добавления задачи
     taskInput.value = ''; // Очищаем поле ввода
+    showhide(ShowAddTask);
+  }
+});
+
+function UpdateTask(taskName,idTask) {
+  fetch('http://localhost:3000/UpdateTask', {
+    method: 'PUT', headers: {
+      'Content-Type': 'application/json'
+    }, body: JSON.stringify({name: taskName, id: idTask})
+  })
+    .then(response => response.text())
+    .then(message => {
+      console.log(message);
+      loadTasks(); // После добавления задачи перезагружаем список задач
+    })
+    .catch(error => console.error('Error updating task:', error));
+}
+// Обработчик события отправки формы
+document.getElementById('taskFormUpdate').addEventListener('submit', function (event) {
+  event.preventDefault(); // Предотвращаем перезагрузку страницы
+  const taskUpdateId = document.getElementById('taskUpdateId');
+  const taskUpdateText = document.getElementById('taskUpdateText');
+  const taskName = taskUpdateText.value.trim();
+  const idTask = taskUpdateId.value.trim();
+  if (taskName !== '' && idTask!=='') {
+    UpdateTask(taskName,idTask); // Вызываем функцию добавления задачи
+    taskUpdateId.value = ''; // Очищаем поле ввода
+    taskUpdateText.value = '';
+    showhide(ShowUpdateTask);
+  }
+});
+
+function DeleteTask(idTask) {
+  fetch('http://localhost:3000/DeleteTask', {
+    method: 'DELETE', headers: {
+      'Content-Type': 'application/json'
+    }, body: JSON.stringify({id: idTask})
+  })
+    .then(response => response.text())
+    .then(message => {
+      console.log(message);
+      loadTasks(); // После добавления задачи перезагружаем список задач
+    })
+    .catch(error => console.error('Error deleting task:', error));
+}
+// Обработчик события отправки формы
+document.getElementById('taskFormDelete').addEventListener('submit', function (event) {
+  event.preventDefault(); // Предотвращаем перезагрузку страницы
+  const taskDelete = document.getElementById('taskDelete');
+  
+  const idTask = taskDelete.value.trim();
+  if (idTask!=='') {
+    DeleteTask(idTask); // Вызываем функцию добавления задачи
+    taskDelete.value = ''; // Очищаем поле ввода
+    showhide(ShowDeleteTask);
   }
 });
 
