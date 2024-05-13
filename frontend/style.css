@@ -1,0 +1,173 @@
+header{  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 84px;
+  width: 100%;
+  background-color:#007765; 
+}
+.body_header{
+  width:1219px;
+  padding-left: 55px;
+  padding-right: 55px;
+  margin: auto;
+  max-width: 1219px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo{
+  text-align: center;
+  color:#fff;
+  margin-top: -10px;
+  font-size: 50px;
+  font-weight: 100;
+  text-shadow: 2px 2px 2px #000;
+  font-family: Sans MS, Comic Sans, cursive
+}
+.button {
+  padding: 5px;
+  display:inline-block;
+  margin:0 0.4em 0;
+  color:#fff;
+  text-shadow: 1px 1px 1px #000;
+  background-color: #1B9E00;
+  border: 2px solid #126700;
+  border-radius: 8px; /* Радиус скругления */
+  transition: all 0.2s linear;
+}
+.button:hover {
+  background-color: #2D771E;
+  border: 2px solid #126700;
+}
+.button:active{
+  background-color: #71CF5D;
+  border: 2px solid #126700;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #8cd1c8;
+}
+.main{
+  max-width: 1219px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 55px;
+  padding-right: 55px;
+}
+
+#registerForm{
+  display:flex;
+  flex-direction: column;
+}
+#newPassword{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#loginForm{
+  display:flex;
+  flex-direction: column;
+}
+#password{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.secondaryButton{
+    padding: 5px;
+    display:inline-block;
+    color:#fff;
+    text-shadow: 1px 1px 1px #000;
+    background-color: #3D6DBE;
+    border: 2px solid #042152;
+    border-radius: 8px; /* Радиус скругления */
+    transition: all 0.2s linear;
+}
+.secondaryButton:hover {
+  background-color: #0C367E;
+  border: 2px solid #042152;
+}
+.secondaryButton:active{
+    background-color: #6083BE;
+    border: 2px solid #042152;
+}
+
+.deleteButton{
+  padding: 5px;
+  display:inline-block;
+  color:#fff;
+  text-shadow: 1px 1px 1px #000;
+  background-color: #DE7D38;
+  border: 2px solid #7B3300;
+  border-radius: 8px; /* Радиус скругления */
+  transition: all 0.2s linear;
+}
+.deleteButton:hover{
+  background-color: #BE4F00;
+  border: 2px solid #7B3300;
+}
+.deleteButton:active{
+  background-color: #DE9764;
+  border: 2px solid #7B3300;
+}
+
+
+
+.tableTask{
+  border-collapse: collapse;
+  border-spacing:50px;
+  counter-reset:schetchik ;
+}
+.tableTask tr{
+  counter-increment: schetchik;
+}
+.tableTask tr::before{
+  content: counter(schetchik);
+  display: table-cell;
+  vertical-align: middle;
+
+}
+table{
+  margin-top: 20px;
+}
+td, th{
+  padding-right: 50px;
+  padding-left: 50px;
+
+}
+.DeleteImageButton{
+  width: 30px;
+  height: 30px;
+  background-image: url(trash.png);
+  border:none;
+  background-size: cover;
+  background-color: #8cd1c8;
+}
+.DeleteImageButton:hover{
+  opacity:0.6;
+}
+.DeleteImageButton:active{
+  transform:scale(0.95);
+}
+.UpdateImageButton{
+  width: 30px;
+  height: 30px;
+  background-image: url(pencil.png);
+  border:none;
+  background-size: cover;
+  background-color: #8cd1c8;
+}
+.UpdateImageButton:hover{
+  opacity:0.6;
+}
+.UpdateImageButton:active{
+  transform:scale(0.95);
+}
+
+.toolbar{
+  margin-top: 20px;
+}
+.CRUD{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

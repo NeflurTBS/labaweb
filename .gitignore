@@ -1,2 +1,3 @@
 node_modules
-backend\ca-certificate-test.crt
+ca-certificate-test.crt
+.vscode
