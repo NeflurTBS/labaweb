@@ -83,7 +83,7 @@ function loadTasks() {
           <span id="taskFromTable${task.id}">${task.name}</span>
           <form id="taskFormUpdateTable${task.id}" style="display: none" class="CRUD">
             <input type="text" id="taskUpdateTextTable${task.id}" placeholder="${task.name}" required/>
-            <button class="secondaryButton" onclick=UpdateByButton(taskUpdateTextTable${task.id},${task.id})>Редактировать</button>
+            <button class="secondaryButton" onclick=UpdateByButton(taskUpdateTextTable${task.id},${task.id})>Изменить</button>
           </form>
         </td> 
         <td>
@@ -178,7 +178,7 @@ function DeleteTask(idTask) {
 }
 
 function DeleteByButton(id){
-  var result = confirm("Want to delete?");
+  var result = confirm("Вы уверены что хотите удалить задачу?");
   if   (result) {
     DeleteTask(id)
   }  

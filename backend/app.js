@@ -217,7 +217,7 @@ app.post('/addTask', (req, res) => {
   }
 
   // SQL-запрос для добавления записи с указанным именем в таблицу tasks
-  const sqlQuery = `INSERT INTO tasks (name) VALUES ('${taskName}')`;
+  const sqlQuery = `INSERT INTO tasks (name, user_id) VALUES (${taskName}, user_id);`;
 
   // Выполнение SQL-запроса к базе данных
   dbConnection.query(sqlQuery, (err, result) => {
