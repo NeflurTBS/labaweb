@@ -115,11 +115,14 @@ body {
 
 .tableTask{
   border-collapse: collapse;
-  border-spacing:50px;
+  
   counter-reset:schetchik ;
 }
 .tableTask tr{
   counter-increment: schetchik;
+  border-bottom: 1px solid grey;
+  border-top: 1px solid grey;
+  height: 50px;
 }
 .tableTask tr::before{
   content: counter(schetchik);
@@ -131,10 +134,39 @@ table{
   margin-top: 20px;
 }
 td, th{
-  padding-right: 40px;
+  padding-right: 50px;
+  padding-left: 50px;
 
-  text-align: center;
 }
+.DeleteImageButton{
+  width: 30px;
+  height: 30px;
+  background-image: url(trash.png);
+  border:none;
+  background-size: cover;
+  background-color: #8cd1c8;
+}
+.DeleteImageButton:hover{
+  opacity:0.6;
+}
+.DeleteImageButton:active{
+  transform:scale(0.95);
+}
+.UpdateImageButton{
+  width: 30px;
+  height: 30px;
+  background-image: url(pencil.png);
+  border:none;
+  background-size: cover;
+  background-color: #8cd1c8;
+}
+.UpdateImageButton:hover{
+  opacity:0.6;
+}
+.UpdateImageButton:active{
+  transform:scale(0.95);
+}
+
 .toolbar{
   margin-top: 20px;
 }

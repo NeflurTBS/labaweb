@@ -7,7 +7,7 @@ const ShowUpdateTask = document.getElementById("taskFormUpdate");
 
 function showhide(d) {
   d.style.display = (d.style.display !== "none") ? "none" : "block";
-  }
+}
 
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -78,7 +78,18 @@ function loadTasks() {
       taskList.innerHTML = '';
       tasks.forEach(task => {
         var tr = document.createElement('tr');
-        tr.innerHTML = `<td>${task.name} </td> <td>${task.id}</td>`;
+        tr.innerHTML = 
+        `<td>
+          <span id="taskFromTable${task.id}">${task.name}</span>
+          <form id="taskFormUpdateTable${task.id}" style="display: none" class="CRUD">
+            <input type="text" id="taskUpdateTextTable${task.id}" placeholder="${task.name}" required/>
+            <button class="secondaryButton" onclick=UpdateByButton(taskUpdateTextTable${task.id},${task.id})>Изменить</button>
+          </form>
+        </td> 
+        <td>
+          <button class="UpdateImageButton" onclick="ShowHideUpdate(taskFormUpdateTable${task.id},taskFromTable${task.id})"></button>
+          <button class="DeleteImageButton" id="${task.id}" onclick="DeleteByButton(id)"></button>
+        </td>`;
         taskList.appendChild(tr);
       });
     })
@@ -125,8 +136,19 @@ function UpdateTask(taskName,idTask) {
     })
     .catch(error => console.error('Error updating task:', error));
 }
+
+function ShowHideUpdate(show,hide){
+  show.style.display = (show.style.display !== "none") ? "none" : "block";
+  hide.style.display = (hide.style.display !== "none") ? "none" : "block";
+}
+
 // Обработчик события отправки формы
-document.getElementById('taskFormUpdate').addEventListener('submit', function (event) {
+
+function UpdateByButton(task,id){
+  UpdateTask(task.value,id);
+}
+
+/*document.getElementById('taskFormUpdate').addEventListener('submit', function (event) {
   event.preventDefault(); // Предотвращаем перезагрузку страницы
   const taskUpdateId = document.getElementById('taskUpdateId');
   const taskUpdateText = document.getElementById('taskUpdateText');
@@ -138,7 +160,8 @@ document.getElementById('taskFormUpdate').addEventListener('submit', function (e
     taskUpdateText.value = '';
     showhide(ShowUpdateTask);
   }
-});
+});*/
+
 
 function DeleteTask(idTask) {
   fetch('http://localhost:3000/DeleteTask', {
@@ -153,8 +176,15 @@ function DeleteTask(idTask) {
     })
     .catch(error => console.error('Error deleting task:', error));
 }
+
+function DeleteByButton(id){
+  var result = confirm("Вы уверены что хотите удалить задачу?");
+  if   (result) {
+    DeleteTask(id)
+  }  
+}
 // Обработчик события отправки формы
-document.getElementById('taskFormDelete').addEventListener('submit', function (event) {
+/*document.getElementById('taskFormDelete').addEventListener('submit', function (event) {
   event.preventDefault(); // Предотвращаем перезагрузку страницы
   const taskDelete = document.getElementById('taskDelete');
   
@@ -164,7 +194,7 @@ document.getElementById('taskFormDelete').addEventListener('submit', function (e
     taskDelete.value = ''; // Очищаем поле ввода
     showhide(ShowDeleteTask);
   }
-});
+});*/
 
 // После загрузки страницы сразу загружаем задачи
 loadTasks();
