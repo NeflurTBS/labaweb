@@ -10,7 +10,7 @@ const config = {
       database: 'db5', // Имя вашей базы данных
       port: 25060, // порт базы данных
 			ssl: {
-			  ca: fs.readFileSync('ca-certificate-test.crt'), // Путь к файлу ca.crt
+			  ca: fs.readFileSync('/etc/secrets/ca-certificate-test.crt'), // Путь к файлу ca.crt
 			}
     },
   }, 
