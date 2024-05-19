@@ -2,7 +2,7 @@ header{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 84px;
+  height: 100px;
   width: 100%;
   background-color:#007765; 
 }
@@ -28,9 +28,9 @@ header{
 .button {
   padding: 5px;
   display:inline-block;
-  margin:0 0.4em 0;
   color:#fff;
-  text-shadow: 1px 1px 1px #000;
+  margin: 10px;
+  text-shadow: 1px 2px 1px #000;
   background-color: #1B9E00;
   border: 2px solid #126700;
   border-radius: 8px; /* Радиус скругления */
@@ -47,6 +47,7 @@ header{
 body {
   font-family: Arial, sans-serif;
   background-color: #8cd1c8;
+  font-size: 25px;
 }
 .main{
   max-width: 1219px;
@@ -92,6 +93,11 @@ body {
     border: 2px solid #042152;
 }
 
+.field{
+
+}
+
+
 .deleteButton{
   padding: 5px;
   display:inline-block;
@@ -110,8 +116,6 @@ body {
   background-color: #DE9764;
   border: 2px solid #7B3300;
 }
-
-
 
 .tableTask{
   border-collapse: collapse;
@@ -136,6 +140,7 @@ table{
 td, th{
   padding-right: 50px;
   padding-left: 50px;
+  font-size: 25px;
 
 }
 .DeleteImageButton{

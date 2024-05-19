@@ -17,12 +17,11 @@
     <div class="body_header">
       <span class="logo">To-Do List</span>
       <nav>
+        <span id="nameUser"></span>
+        
         <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" id="buttonRegistr">
           Регистрация
         </button>
-
-        <!-- Модальное окно -->
-        
         <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog ">
             <div class="modal-content">
@@ -33,8 +32,9 @@
               <div class="modal-body">
                 
                 <form id="registerForm">
-                  <input type="text" id="newUsername" placeholder="Новое имя пользователя" required class="field">
-                  <input type="password" id="newPassword" placeholder="Новый пароль" required class="field">
+                  <input type="text" id="newUsername" placeholder="Имя пользователя" required class="field">
+                  <input type="password" id="newPassword" placeholder="Пароль" required class="field">
+                  <input type="email" id="email" placeholder="Почта" required class="field" pattern="*@*.*">
                   <button type="submit" class="button">Зарегистрироваться</button>                  
                 </form>
               </div>
@@ -45,13 +45,9 @@
           </div>
         </div>
 
-        
-
-          <!-- Кнопка-триггер модального окна -->
-          <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" id="buttonAutoriz">
-            Авторизация
-          </button>
-        <!-- Модальное окно -->
+        <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" id="buttonAutoriz">
+          Авторизация
+        </button>
         <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
