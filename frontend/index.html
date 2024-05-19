@@ -17,12 +17,11 @@
     <div class="body_header">
       <span class="logo">To-Do List</span>
       <nav>
+        <span id="nameUser"></span>
+        
         <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" id="buttonRegistr">
           Регистрация
         </button>
-
-        <!-- Модальное окно -->
-        
         <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog ">
             <div class="modal-content">
@@ -33,8 +32,9 @@
               <div class="modal-body">
                 
                 <form id="registerForm">
-                  <input type="text" id="newUsername" placeholder="Новое имя пользователя" required class="field">
-                  <input type="password" id="newPassword" placeholder="Новый пароль" required class="field">
+                  <input type="text" id="newUsername" placeholder="Имя пользователя" required class="field">
+                  <input type="password" id="newPassword" placeholder="Пароль" required class="field">
+                  <input type="email" id="email" placeholder="Почта" required class="field" pattern="*@*.*">
                   <button type="submit" class="button">Зарегистрироваться</button>                  
                 </form>
               </div>
@@ -45,13 +45,9 @@
           </div>
         </div>
 
-        
-
-          <!-- Кнопка-триггер модального окна -->
-          <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" id="buttonAutoriz">
-            Авторизация
-          </button>
-        <!-- Модальное окно -->
+        <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" id="buttonAutoriz">
+          Авторизация
+        </button>
         <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -82,27 +78,29 @@
       <div class="toolbar">
         <!--Добавление-->
         <button id="button" onclick="showhide(ShowAddTask)" class="secondaryButton">Добавление</button>
-        <!--Редактирование-->
+        <!--Редактирование
         <button id="button1" onclick="showhide(ShowUpdateTask)" class="secondaryButton">Редактирование</button>
-        <!-- удаление -->
+         удаление 
         <button id="button2" onclick="showhide(ShowDeleteTask)" class="deleteButton">Удаление</button>
-        
+        -->
         <!--Добавление-->
         <form id="taskFormAdd" style="display: none" class="CRUD">
           <input type="text" id="taskInput" placeholder="Введите текст задачи" required/>
           <button type="submit" class="secondaryButton">Добавить</button>
         </form>
-        <!--Редактирование-->
+        <!--
+        Редактирование
         <form id="taskFormUpdate" style="display: none" class="CRUD">
           <input type="number" id="taskUpdateId" placeholder="Введите ID задачи" required/>
           <input type="text" id="taskUpdateText" placeholder="Введите текст задачи" required/>
           <button type="submit" class="secondaryButton">Редактировать</button>
         </form>
-        <!-- удаление -->
+         удаление 
         <form id="taskFormDelete" style="display: none" class="CRUD">
           <input type="number" id="taskDelete" placeholder="Введите ID задачи" required/>
           <button type="submit" class="deleteButton">Удалить</button>
         </form>
+      -->
       </div>
     </div>
     <div class="main">
@@ -111,7 +109,7 @@
           <tr>
             <th>Номер задачи</th>
             <th>Задача</th>
-            <th>ID задачи</th>
+            
           </tr>
         </thead>
         <tbody class="tableTask" id="taskList">
@@ -122,8 +120,7 @@
       </table>
     </div>
 
-    <!-- Gem jQuery -->
-    <script src="/assets/js/jquery-3.5.1.min.js"></script>
+  
     <script src="script.js"></script>
     <!-- Подключаем JavaScript файл -->
     <script
