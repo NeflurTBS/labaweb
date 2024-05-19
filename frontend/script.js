@@ -4,6 +4,7 @@ var myModal = document.getElementById("myModal");
 const ShowDeleteTask = document.getElementById("taskFormDelete");
 const ShowAddTask = document.getElementById("taskFormAdd");
 const ShowUpdateTask = document.getElementById("taskFormUpdate");
+const ShowAddFolder = document.getElementById("folderFormAdd");
 
 function showhide(d) {
   d.style.display = d.style.display !== "none" ? "none" : "block";
@@ -53,12 +54,66 @@ document.addEventListener("DOMContentLoaded", () => {
     buttonRegistr.style.display="none";
     buttonAutoriz.style.display="none";*/
 
-    console.log(token);
+
    
     // Пользователь не аутентифицирован, показываем форму входа и/или регистрации
     // Например:
   }
 });
+
+
+
+// Обработчик события отправки формы
+document
+  .getElementById("folderFormAdd")
+  .addEventListener("submit", function (event) {
+    event.preventDefault(); // Предотвращаем перезагрузку страницы
+    const folderInput = document.getElementById("folderInput");
+    const folderName = folderInput.value.trim();
+    if (folderName !== "") {
+      addTask(folderName); // Вызываем функцию добавления задачи
+      taskInput.value = ""; // Очищаем поле ввода
+      showhide(ShowAddFolder);
+    }
+  });
+// Функция для добавления задачи на сервер
+function addFolder(folderName) {
+  fetch("http://localhost:3000/addFolder", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ folderName: folderName }),
+  })
+    .then((response) => response.text())
+    .then((message) => {
+      console.log(message);
+      loadTasks(); // После добавления задачи перезагружаем список задач
+    })
+    .catch((error) => console.error("Error adding task:", error));
+}
+
+function UpdateFolder(folderName, idFolder) {
+  fetch("http://localhost:3000/UpdateFolder", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ folderName: folderName, id: idFolder }),
+  })
+    .then((response) => response.text())
+    .then((message) => {
+      console.log(message);
+      loadTasks(); // После добавления задачи перезагружаем список задач
+    })
+    .catch((error) => console.error("Error updating task:", error));
+}
+function ShowHideUpdateFolder(show, hide) {
+  show.style.display = show.style.display !== "none" ? "none" : "block";
+  hide.style.display = hide.style.display !== "none" ? "none" : "block";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Обработка формы входа
   document
@@ -78,12 +133,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
         localStorage.setItem("token", data.token); // Сохранение токена в localStorage
         alert("Вы успешно вошли");
+        location.reload();
       } catch (error) {
         console.error("Ошибка при входе:", error);
         alert("Ошибка при входе");
       }
+      location.reload();
     });
-
+  });
+document.addEventListener("DOMContentLoaded", () => {
   // Обработка формы регистрации
   document
     .getElementById("registerForm")
@@ -111,6 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 });
+
 // Функция для загрузки задач с сервера
 function loadTasks() {
   // Предполагаем, что сервер запущен на localhost:3000
@@ -122,8 +181,6 @@ function loadTasks() {
   })
     .then((response) => response.json())
     .then((tasks) => {
-
-      
       const taskList = document.getElementById("taskList");
       taskList.innerHTML = "";
       tasks.forEach((task) => {
@@ -204,20 +261,6 @@ function UpdateByButton(task, id) {
   UpdateTask(task.value, id);
 }
 
-/*document.getElementById('taskFormUpdate').addEventListener('submit', function (event) {
-  event.preventDefault(); // Предотвращаем перезагрузку страницы
-  const taskUpdateId = document.getElementById('taskUpdateId');
-  const taskUpdateText = document.getElementById('taskUpdateText');
-  const taskName = taskUpdateText.value.trim();
-  const idTask = taskUpdateId.value.trim();
-  if (taskName !== '' && idTask!=='') {
-    UpdateTask(taskName,idTask); // Вызываем функцию добавления задачи
-    taskUpdateId.value = ''; // Очищаем поле ввода
-    taskUpdateText.value = '';
-    showhide(ShowUpdateTask);
-  }
-});*/
-
 function DeleteTask(idTask) {
   fetch("http://localhost:3000/DeleteTask", {
     method: "DELETE",
@@ -240,18 +283,6 @@ function DeleteByButton(id) {
     DeleteTask(id);
   }
 }
-// Обработчик события отправки формы
-/*document.getElementById('taskFormDelete').addEventListener('submit', function (event) {
-  event.preventDefault(); // Предотвращаем перезагрузку страницы
-  const taskDelete = document.getElementById('taskDelete');
-  
-  const idTask = taskDelete.value.trim();
-  if (idTask!=='') {
-    DeleteTask(idTask); // Вызываем функцию добавления задачи
-    taskDelete.value = ''; // Очищаем поле ввода
-    showhide(ShowDeleteTask);
-  }
-});*/
 
 // После загрузки страницы сразу загружаем задачи
 loadTasks();

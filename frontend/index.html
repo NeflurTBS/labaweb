@@ -77,30 +77,21 @@
     <div class="main">
       <div class="toolbar">
         <!--Добавление-->
-        <button id="button" onclick="showhide(ShowAddTask)" class="secondaryButton">Добавление</button>
-        <!--Редактирование
-        <button id="button1" onclick="showhide(ShowUpdateTask)" class="secondaryButton">Редактирование</button>
-         удаление 
-        <button id="button2" onclick="showhide(ShowDeleteTask)" class="deleteButton">Удаление</button>
-        -->
-        <!--Добавление-->
+        <button id="button" onclick="showhide(ShowAddTask)" class="secondaryButton">Добавление задачи</button>
+
+        <button id="button1" onclick="showhide(ShowAddFolder)" class="secondaryButton">Добавление папки</button>
+        
+        <!--Добавление задачи-->
         <form id="taskFormAdd" style="display: none" class="CRUD">
           <input type="text" id="taskInput" placeholder="Введите текст задачи" required/>
-          <button type="submit" class="secondaryButton">Добавить</button>
+          <button type="submit" class="secondaryButton">Добавить задачу</button>
         </form>
-        <!--
-        Редактирование
-        <form id="taskFormUpdate" style="display: none" class="CRUD">
-          <input type="number" id="taskUpdateId" placeholder="Введите ID задачи" required/>
-          <input type="text" id="taskUpdateText" placeholder="Введите текст задачи" required/>
-          <button type="submit" class="secondaryButton">Редактировать</button>
+
+        <!--Добавление папки-->
+        <form id="folderFormAdd" style="display: none" class="CRUD">
+          <input type="text" id="folderInput" placeholder="Введите название папки" required/>
+          <button type="submit" class="secondaryButton">Добавить папку</button>
         </form>
-         удаление 
-        <form id="taskFormDelete" style="display: none" class="CRUD">
-          <input type="number" id="taskDelete" placeholder="Введите ID задачи" required/>
-          <button type="submit" class="deleteButton">Удалить</button>
-        </form>
-      -->
       </div>
     </div>
     <div class="main">
