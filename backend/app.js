@@ -27,7 +27,37 @@ dbConnection.connect((err) => {
 });
 
 
-// файл ./backend/app.js
+app.post('/addFolder', (req, res) => {
+
+  const token = req.headers.authorization.split(' ')[1];
+  const decoded = jwt.verify(token, config.jwtSecret);
+  const userId = decoded.id; // Получаем идентификатор текущего пользователя из токена
+
+  // Получение имени папки из тела запроса
+  console.log('req.body: ', req.body);
+  const folderName = req.body.folderName;
+ 
+
+  // Проверка наличия имени папки в теле запроса
+  if (!folderName) {
+    res.status(400).send('Не указано имя папки');
+    return;
+  }
+
+  // SQL-запрос для добавления записи с указанным именем в таблицу folder
+  const sqlQuery = `INSERT INTO folder (name, user_id) VALUES ('${folderName}', '${userId}');`;
+
+  // Выполнение SQL-запроса к базе данных
+  dbConnection.query(sqlQuery, (err, result) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса: ' + err.stack);
+      res.status(500).send('Ошибка сервера');
+      return;
+    }
+    console.log('Запись успешно добавлена в таблицу folder');
+    res.send('Запись успешно добавлена в таблицу folder');
+  });
+});
 
 // Регистрация пользователя
 
@@ -221,11 +251,11 @@ app.get('/getTasks', (req, res) => {
 
   let userId;
   const token = req.headers.authorization.split(' ')[1];
-  console.log(token);
+
   try {
     const decoded = jwt.verify(token, config.jwtSecret);
     userId = decoded.id; // Получаем идентификатор текущего пользователя из токена
-    console.log(userId);
+    
   } 
   catch (error) {
     console.error('Ошибка при проверке токена:', error);
@@ -313,14 +343,8 @@ app.put('/UpdateTask', (req, res) => {
     return;
   }
 
-  if (!idTask) {
-    res.status(400).send('Не указан id задачи');
-    return;
-  }
-
   // Пример запроса к базе данных
-  
-  
+
   dbConnection.query(`UPDATE tasks SET name=('${taskName}') WHERE id=('${idTask}')`, (err, results) => {
     if (err) {
       console.error('Ошибка выполнения запроса: ' + err.stack);
@@ -365,6 +389,7 @@ app.post('/addTask', (req, res) => {
   });
 });
 
+app.get('/healthcheck', (req, res) => res.sendStatus(200));
 
 // Запуск сервера
 app.listen(port, () => {
