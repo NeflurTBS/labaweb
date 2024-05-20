@@ -29,7 +29,7 @@ const fetchTasks = async () => {
 
 // Показать имя пользователя
 function showUserName() {
-  fetch('http://localhost:10000/getUserName', {
+  fetch('https://labaweb.onrender.com/getUserName', {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -48,7 +48,7 @@ function showUserName() {
 
 document.addEventListener("DOMContentLoaded", () => {
   /*if (token) {
-  const url = "http://localhost:10000/profile"; // URL API, который вы вызываете
+  const url = "https://labaweb.onrender.com/profile"; // URL API, который вы вызываете
   const token = localStorage.getItem("token"); // Токен, полученный после аутентификации
 
     // Опции для fetch запроса
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
       try {
-        const response = await fetch("http://localhost:10000/login", {
+        const response = await fetch("https://labaweb.onrender.com/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const newPassword = document.getElementById("newPassword").value;
       const email = document.getElementById("email").value;
       try {
-        const response = await fetch("http://localhost:10000/register", {
+        const response = await fetch("https://labaweb.onrender.com/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function loadTasks() {
   // Предполагаем, что сервер запущен на localhost:10000
   // Также предполагаем, что у вас метод получения всех задач называется getTasks и находится на данном пути
-  fetch("http://localhost:10000/getTasks", 
+  fetch("https://labaweb.onrender.com/getTasks", 
   {headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}` // Передача токена авторизации
     }
@@ -177,7 +177,7 @@ function loadTasks() {
 
 // Функция для добавления задачи на сервер
 function addTask(taskName) {
-  fetch("http://localhost:10000/addTask", {
+  fetch("https://labaweb.onrender.com/addTask", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -208,7 +208,7 @@ document
   });
 
 function UpdateTask(taskName, idTask) {
-  fetch("http://localhost:10000/UpdateTask", {
+  fetch("https://labaweb.onrender.com/UpdateTask", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -235,7 +235,7 @@ function UpdateByButton(task, id) {
 }
 
 function DeleteTask(idTask) {
-  fetch("http://localhost:10000/DeleteTask", {
+  fetch("https://labaweb.onrender.com/DeleteTask", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
