@@ -112,7 +112,7 @@ app.post('/register', async (req, res) => {
               from: 'todoconfirm735@gmail.com',
               to: email,
               subject: 'Подтверждение регистрации',
-              html: `<p>Для подтверждения регистрации перейдите по ссылке: <a href="http://localhost:10000/confirm/${emailConfirmToken}">Подтвердить регистрацию</a></p>`
+              html: `<p>Для подтверждения регистрации перейдите по ссылке: <a href="https://labaweb.onrender.com/confirm/${emailConfirmToken}">Подтвердить регистрацию</a></p>`
             };
 
             transporter.sendMail(mailOptions, (error, info) => {
@@ -210,7 +210,7 @@ app.post('/login', async (req, res) => {
           res.status(500).send('Ошибка сервера');
           return;
         }
-        if (results.length === 0) {
+        if (results.length == 0) {
           res.status(401).send('Неверные учетные данные');
           return;
         }
