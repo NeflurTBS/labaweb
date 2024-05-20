@@ -93,11 +93,6 @@ body {
     border: 2px solid #042152;
 }
 
-.field{
-
-}
-
-
 .deleteButton{
   padding: 5px;
   display:inline-block;
@@ -144,32 +139,6 @@ table{
 td, th{
   padding-right: 50px;
   padding-left: 50px;
-
-}
-.DeleteImageButton{
-  width: 30px;
-  height: 30px;
-  background-image: url(trash.png);
-  border:none;
-  background-size: cover;
-  background-color: #8cd1c8;
-}
-.DeleteImageButton:hover{
-  opacity:0.6;
-}
-.DeleteImageButton:active{
-  transform:scale(0.95);
-}
-.UpdateImageButton{
-  width: 30px;
-  height: 30px;
-  background-image: url(pencil.png);
-  border:none;
-  background-size: cover;
-  background-color: #8cd1c8;
-  padding-right: 50px;
-  padding-left: 50px;
-  font-size: 25px;
 
 }
 .DeleteImageButton{

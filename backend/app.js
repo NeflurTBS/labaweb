@@ -16,7 +16,9 @@ app.use(express.json());
 
 // Конфигурация подключения к базе данных
 const dbConnection = mysql.createConnection(config.db.mysql);
+const path = require('path');
 
+app.use(express.static(path.join(__dirname, '../frontend')));
 // Подключение к базе данных
 dbConnection.connect((err) => {
   if (err) {
@@ -110,7 +112,7 @@ app.post('/register', async (req, res) => {
               from: 'todoconfirm735@gmail.com',
               to: email,
               subject: 'Подтверждение регистрации',
-              html: `<p>Для подтверждения регистрации перейдите по ссылке: <a href="http://localhost:10000/confirm/${emailConfirmToken}">Подтвердить регистрацию</a></p>`
+              html: `<p>Для подтверждения регистрации перейдите по ссылке: <a href="http://localhost:3000/confirm/${emailConfirmToken}">Подтвердить регистрацию</a></p>`
             };
 
             transporter.sendMail(mailOptions, (error, info) => {
@@ -389,7 +391,6 @@ app.post('/addTask', (req, res) => {
   });
 });
 
-app.get('/healthcheck', (req, res) => res.sendStatus(200));
 
 // Запуск сервера
 app.listen(port, () => {

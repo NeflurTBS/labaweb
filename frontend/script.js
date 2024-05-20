@@ -5,6 +5,7 @@ const ShowDeleteTask = document.getElementById("taskFormDelete");
 const ShowAddTask = document.getElementById("taskFormAdd");
 const ShowUpdateTask = document.getElementById("taskFormUpdate");
 
+
 function showhide(d) {
   d.style.display = d.style.display !== "none" ? "none" : "block";
 }
@@ -26,39 +27,66 @@ const fetchTasks = async () => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    // Пользователь аутентифицирован, делаем что-то...
-    // Например, получаем данные пользователя или показываем защищенные части приложения
-    // Вы можете отправить запрос на /profile маршрут для получения данных о пользователе
-    // Или просто показать определенные элементы интерфейса, доступные только аутентифицированным пользователям
-        
-  /*fetch('http://localhost:3000/getTasks')
-  .then(response => response.json())
-  .then(data => {
-    // Обработка полученных данных
-    console.log('Расшифрованные данные с сервера:', data);
+// Показать имя пользователя
+function showUserName() {
+  fetch('http://localhost:3000/getUserName', {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }
   })
-  .catch(error => console.error('Ошибка:', error));
-
-    const username = document.getElementById("username").value;
-    console.log(username)
-
-    var nameUser = document.getElementById("nameUser").getElementsByClassName("span"); 
-    nameUser.innerHTML = username;
-
+  .then((response) => response.json())
+  .then((userName) => {
+    console.log(userName);
+    document.getElementById('nameUser').textContent = `Вы вошли в систему как: ${userName}`;
     let buttonRegistr = document.getElementById("buttonRegistr");
-    let buttonAutoriz = document.getElementById("buttonAutoriz");
-    buttonRegistr.style.display="none";
-    buttonAutoriz.style.display="none";*/
+          let buttonAutoriz = document.getElementById("buttonAutoriz");
+          buttonRegistr.style.display="none";
+          buttonAutoriz.style.display="none";
+  })
+}
 
-    console.log(token);
-   
-    // Пользователь не аутентифицирован, показываем форму входа и/или регистрации
-    // Например:
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  /*if (token) {
+  const url = "http://localhost:3000/profile"; // URL API, который вы вызываете
+  const token = localStorage.getItem("token"); // Токен, полученный после аутентификации
+
+    // Опции для fetch запроса
+    const options = {
+        method: 'GET', // Метод запроса
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}` // Включение токена в заголовки запроса
+        }
+    };
+
+    // Отправляем запрос на сервер
+    fetch(url, options)
+        .then(response => {
+            // Проверяем, успешно ли выполнен запрос
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Распарсиваем ответ в формате JSON
+        })
+        .then(data => {
+          var nameUser = document.getElementById("nameUser").getElementsByClassName("span"); 
+          nameUser.innerHTML = data;
+      
+          let buttonRegistr = document.getElementById("buttonRegistr");
+          let buttonAutoriz = document.getElementById("buttonAutoriz");
+          buttonRegistr.style.display="none";
+          buttonAutoriz.style.display="none";
+        })
+        .catch(error => {
+            // Обработка ошибок в случае неудачного запроса или других проблем
+            console.error('There was a problem with your fetch operation:', error);
+        });
+      }
+  else{
+
+  }*/
 });
+
 document.addEventListener("DOMContentLoaded", () => {
   // Обработка формы входа
   document
@@ -78,12 +106,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
         localStorage.setItem("token", data.token); // Сохранение токена в localStorage
         alert("Вы успешно вошли");
+        location.reload();
       } catch (error) {
         console.error("Ошибка при входе:", error);
         alert("Ошибка при входе");
       }
+      location.reload();
     });
-
+  });
+document.addEventListener("DOMContentLoaded", () => {
   // Обработка формы регистрации
   document
     .getElementById("registerForm")
@@ -111,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 });
+
 // Функция для загрузки задач с сервера
 function loadTasks() {
   // Предполагаем, что сервер запущен на localhost:3000
@@ -122,8 +154,6 @@ function loadTasks() {
   })
     .then((response) => response.json())
     .then((tasks) => {
-
-      
       const taskList = document.getElementById("taskList");
       taskList.innerHTML = "";
       tasks.forEach((task) => {
@@ -204,20 +234,6 @@ function UpdateByButton(task, id) {
   UpdateTask(task.value, id);
 }
 
-/*document.getElementById('taskFormUpdate').addEventListener('submit', function (event) {
-  event.preventDefault(); // Предотвращаем перезагрузку страницы
-  const taskUpdateId = document.getElementById('taskUpdateId');
-  const taskUpdateText = document.getElementById('taskUpdateText');
-  const taskName = taskUpdateText.value.trim();
-  const idTask = taskUpdateId.value.trim();
-  if (taskName !== '' && idTask!=='') {
-    UpdateTask(taskName,idTask); // Вызываем функцию добавления задачи
-    taskUpdateId.value = ''; // Очищаем поле ввода
-    taskUpdateText.value = '';
-    showhide(ShowUpdateTask);
-  }
-});*/
-
 function DeleteTask(idTask) {
   fetch("http://localhost:3000/DeleteTask", {
     method: "DELETE",
@@ -231,27 +247,15 @@ function DeleteTask(idTask) {
       console.log(message);
       loadTasks(); // После добавления задачи перезагружаем список задач
     })
-    .catch(error => console.error('Error deleting task:', error));
+    .catch((error) => console.error("Error deleting task:", error));
 }
 
-function DeleteByButton(id){
+function DeleteByButton(id) {
   var result = confirm("Вы уверены что хотите удалить задачу?");
-  if   (result) {
-    DeleteTask(id)
-  }  
-}
-// Обработчик события отправки формы
-/*document.getElementById('taskFormDelete').addEventListener('submit', function (event) {
-  event.preventDefault(); // Предотвращаем перезагрузку страницы
-  const taskDelete = document.getElementById('taskDelete');
-  
-  const idTask = taskDelete.value.trim();
-  if (idTask!=='') {
-    DeleteTask(idTask); // Вызываем функцию добавления задачи
-    taskDelete.value = ''; // Очищаем поле ввода
-    showhide(ShowDeleteTask);
+  if (result) {
+    DeleteTask(id);
   }
-});*/
+}
 
 // После загрузки страницы сразу загружаем задачи
 loadTasks();
