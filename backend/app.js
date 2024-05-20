@@ -112,7 +112,7 @@ app.post('/register', async (req, res) => {
               from: 'todoconfirm735@gmail.com',
               to: email,
               subject: 'Подтверждение регистрации',
-              html: `<p>Для подтверждения регистрации перейдите по ссылке: <a href="http://localhost:3000/confirm/${emailConfirmToken}">Подтвердить регистрацию</a></p>`
+              html: `<p>Для подтверждения регистрации перейдите по ссылке: <a href="http://localhost:10000/confirm/${emailConfirmToken}">Подтвердить регистрацию</a></p>`
             };
 
             transporter.sendMail(mailOptions, (error, info) => {
