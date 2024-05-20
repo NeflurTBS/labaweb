@@ -391,6 +391,8 @@ app.post('/addTask', (req, res) => {
   });
 });
 
+app.get('/healthcheck', (req, res) => res.sendStatus(200));
+
 
 // Запуск сервера
 app.listen(port, () => {
