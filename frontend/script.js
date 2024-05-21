@@ -4,7 +4,7 @@ var myModal = document.getElementById("myModal");
 const ShowDeleteTask = document.getElementById("taskFormDelete");
 const ShowAddTask = document.getElementById("taskFormAdd");
 const ShowUpdateTask = document.getElementById("taskFormUpdate");
-
+const ShowAddFolder = document.getElementById("folderFormAdd");
 
 function showhide(d) {
   d.style.display = d.style.display !== "none" ? "none" : "block";
@@ -27,64 +27,38 @@ const fetchTasks = async () => {
   }
 };
 
-// Показать имя пользователя
-function showUserName() {
-  fetch('https://labaweb.onrender.com/getUserName', {
-    method: 'GET',
-    headers: {
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    }
-  })
-  .then((response) => response.json())
-  .then((userName) => {
-    console.log(userName);
-    document.getElementById('nameUser').textContent = `Вы вошли в систему как: ${userName}`;
-    let buttonRegistr = document.getElementById("buttonRegistr");
-          let buttonAutoriz = document.getElementById("buttonAutoriz");
-          buttonRegistr.style.display="none";
-          buttonAutoriz.style.display="none";
-  })
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-  /*if (token) {
-  const url = "https://labaweb.onrender.com/profile"; // URL API, который вы вызываете
-  const token = localStorage.getItem("token"); // Токен, полученный после аутентификации
+  const token = localStorage.getItem("token");
+  if (token) {
+    // Пользователь аутентифицирован, делаем что-то...
+    // Например, получаем данные пользователя или показываем защищенные части приложения
+    // Вы можете отправить запрос на /profile маршрут для получения данных о пользователе
+    // Или просто показать определенные элементы интерфейса, доступные только аутентифицированным пользователям
+        
+  /*fetch('https://labaweb.onrender.com/getTasks')
+  .then(response => response.json())
+  .then(data => {
+    // Обработка полученных данных
+    console.log('Расшифрованные данные с сервера:', data);
+  })
+  .catch(error => console.error('Ошибка:', error));
 
-    // Опции для fetch запроса
-    const options = {
-        method: 'GET', // Метод запроса
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}` // Включение токена в заголовки запроса
-        }
-    };
+    const username = document.getElementById("username").value;
+    console.log(username)
 
-    // Отправляем запрос на сервер
-    fetch(url, options)
-        .then(response => {
-            // Проверяем, успешно ли выполнен запрос
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json(); // Распарсиваем ответ в формате JSON
-        })
-        .then(data => {
-          var nameUser = document.getElementById("nameUser").getElementsByClassName("span"); 
-          nameUser.innerHTML = data;
-      
-          let buttonRegistr = document.getElementById("buttonRegistr");
-          let buttonAutoriz = document.getElementById("buttonAutoriz");
-          buttonRegistr.style.display="none";
-          buttonAutoriz.style.display="none";
-        })
-        .catch(error => {
-            // Обработка ошибок в случае неудачного запроса или других проблем
-            console.error('There was a problem with your fetch operation:', error);
-        });
-      }
-  else{
+    var nameUser = document.getElementById("nameUser").getElementsByClassName("span"); 
+    nameUser.innerHTML = username;
 
-  }*/
+    let buttonRegistr = document.getElementById("buttonRegistr");
+    let buttonAutoriz = document.getElementById("buttonAutoriz");
+    buttonRegistr.style.display="none";
+    buttonAutoriz.style.display="none";*/
+
+
+   
+    // Пользователь не аутентифицирован, показываем форму входа и/или регистрации
+    // Например:
+  }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -106,12 +80,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
         localStorage.setItem("token", data.token); // Сохранение токена в localStorage
         alert("Вы успешно вошли");
-        location.reload();
+        
       } catch (error) {
         console.error("Ошибка при входе:", error);
         alert("Ошибка при входе");
       }
-      location.reload();
+      
     });
   });
 document.addEventListener("DOMContentLoaded", () => {
