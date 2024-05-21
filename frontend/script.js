@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Ошибка при входе:", error);
         alert("Ошибка при входе");
       }
-      
+      location.reload();
     });
   });
 document.addEventListener("DOMContentLoaded", () => {
