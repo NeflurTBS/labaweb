@@ -17,6 +17,11 @@ app.use(express.json());
 // Конфигурация подключения к базе данных
 const dbConnection = mysql.createConnection(config.db.mysql);
 
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+
 // Подключение к базе данных
 dbConnection.connect((err) => {
   if (err) {
