@@ -16,9 +16,7 @@ app.use(express.json());
 
 // Конфигурация подключения к базе данных
 const dbConnection = mysql.createConnection(config.db.mysql);
-const path = require('path');
 
-app.use(express.static(path.join(__dirname, '../frontend')));
 // Подключение к базе данных
 dbConnection.connect((err) => {
   if (err) {
@@ -210,7 +208,7 @@ app.post('/login', async (req, res) => {
           res.status(500).send('Ошибка сервера');
           return;
         }
-        if (results.length == 0) {
+        if (results.length === 0) {
           res.status(401).send('Неверные учетные данные');
           return;
         }
@@ -390,8 +388,6 @@ app.post('/addTask', (req, res) => {
     res.send('Запись успешно добавлена в таблицу tasks');
   });
 });
-
-app.get('/healthcheck', (req, res) => res.sendStatus(200));
 
 
 // Запуск сервера
